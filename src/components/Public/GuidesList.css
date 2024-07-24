@@ -1,0 +1,131 @@
+/* Scoped General Container */
+.guides-section {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh; /* Ensure the section takes full viewport height */
+}
+
+.guides-background-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.guides-background-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9; /* Adjust the opacity for better readability */
+}
+
+.guides-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(244, 244, 249, 0.564); /* Slightly transparent background for readability */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  margin-top: 25px;
+}
+
+/* Scoped Heading */
+.guides-container h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 28px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+/* Scoped Table Styles */
+.guides-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.guides-table th, .guides-table td {
+  padding: 15px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.guides-table th {
+  background-color: #00ff08;
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.guides-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.guides-table td {
+  color: #333;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+/* Guide Photo */
+.guides-table .guide-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Scoped Responsive Styles */
+@media (max-width: 1200px) {
+  .guides-container {
+    padding: 15px;
+  }
+
+  .guides-table th, .guides-table td {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .guides-table th, .guides-table td {
+    padding: 10px;
+  }
+
+  .guides-table th {
+    font-size: 12px;
+  }
+
+  .guides-table td {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .guides-container {
+    padding: 10px;
+  }
+
+  .guides-table th, .guides-table td {
+    padding: 8px;
+  }
+
+  .guides-table th {
+    font-size: 10px;
+  }
+
+  .guides-table td {
+    font-size: 10px;
+  }
+}

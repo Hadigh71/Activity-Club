@@ -1,0 +1,63 @@
+.public-home-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .background-image {
+    position: absolute;
+    width: 100%;
+    height: 110%;
+    object-fit: cover;
+    z-index: -1;
+    top: 0;
+    left: 0;
+  }
+  
+  .content-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    color: white;
+    padding: 70px;
+  }
+  
+  .content {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 80px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+  }
+  
+  .content h1 {
+    font-size: 2.7rem;
+    margin-bottom: 30px;
+    color: white;
+  }
+  
+  .content p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+  
+  .upcoming-events-button {
+    padding: 20px 40px;
+    font-size: 18.5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #00ff08;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 45px;
+    margin-right: 25px;
+  }
+  
+  .upcoming-events-button:hover {
+    background-color: #00b321;
+  }
+  

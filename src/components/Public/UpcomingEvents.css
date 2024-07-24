@@ -1,0 +1,214 @@
+/* General Styles */
+.upcoming-events-body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+}
+
+/* Background Image Styles */
+.upcoming-events-background-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.upcoming-events-background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.upcoming-events-background-container h1 {
+  position: relative;
+  color: white;
+  text-align: center;
+  font-size: 3rem;
+  margin: 0;
+  padding: 120px 0;
+  z-index: 1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Container Styles */
+.upcoming-events-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  margin-top: -100px; /* Overlap with the background image */
+  position: relative;
+  z-index: 1;
+}
+
+/* Event List Styles */
+.upcoming-events-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.upcoming-events-card {
+  flex: 1 1 calc(33.333% - 20px);
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.upcoming-events-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.upcoming-events-card h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.upcoming-events-card p {
+  margin: 5px 0;
+  color: #666;
+}
+
+/* Event Details Modal Styles */
+.upcoming-events-details {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.upcoming-events-details.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.upcoming-events-details-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.upcoming-events-details-content h2 {
+  font-size: 2rem;
+  color: #333;
+}
+
+.upcoming-events-details-content p {
+  color: #666;
+}
+
+.upcoming-events-close-button,
+.upcoming-events-join-button, 
+.upcoming-events-see-guides-button {
+  background:  #dc3545;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.3s ease;
+  margin-right: 35px;
+  margin-left: 10px;
+}
+
+.upcoming-events-close-button:hover {
+  background: #a90a1a;
+}
+
+.upcoming-events-hide-button{
+  background:  #dc3545;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 5px;
+  transition: background 0.3s ease;
+}
+
+.upcoming-events-hide-button:hover{
+  background: #a90a1a;
+
+}
+
+.upcoming-events-join-button {
+  background: #00ff08;
+  margin-right: 10px;
+}
+
+.upcoming-events-join-button:hover {
+  background: #00b321;
+}
+
+.upcoming-events-see-guides-button{
+  background: #2c95f7;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.upcoming-events-see-guides-button:hover{
+  background: #0056b3;
+}
+
+.upcoming-events-past-due {
+  background: #ff4d4d;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: yellow;
+  display: inline-block;
+  margin-top: 20px;
+  margin-right: 10px;
+  margin-left: 17px;
+}
+
+.upcoming-events-guide-details{
+  margin-top: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .upcoming-events-card {
+    flex: 1 1 calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .upcoming-events-card {
+    flex: 1 1 calc(100% - 20px);
+  }
+
+  .upcoming-events-details-content {
+    padding: 20px;
+  }
+
+  .upcoming-events-close-button,
+  .upcoming-events-join-button {
+    width: 100%;
+    padding: 15px;
+  }
+}

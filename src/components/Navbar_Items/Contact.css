@@ -1,0 +1,69 @@
+.contact-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.contact-container form {
+  display: flex;
+  flex-direction: column;
+  padding: 2vw 4vw;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+  margin-bottom: 40px;
+}
+
+.contact-container form h3 {
+  color: #333; /* Darker color for better contrast */
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.contact-container form input, 
+.contact-container form textarea {
+  border: 1px solid #ddd; /* Light border color */
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 5px;
+  outline: none;
+  background: #f9f9f9; /* Slightly darker background for inputs */
+  font-size: 16px;
+  transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+.contact-container form input:focus, 
+.contact-container form textarea:focus {
+  border-color: #6a11cb; /* Focus border color matching the gradient */
+}
+
+.contact-container form button {
+  padding: 15px;
+  color: white;
+  background-color: #00ff08; /* Matching button color */
+  font-size: 18px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 30px;
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.contact-container form button:hover {
+  background-color: #00b321; /* Hover effect color */
+}
+
+/* Additional styles for input focus */
+.contact-container .input1:focus,
+.contact-container .input2:focus,
+.contact-container .input3:focus {
+  border-color: #6a11cb;
+}
