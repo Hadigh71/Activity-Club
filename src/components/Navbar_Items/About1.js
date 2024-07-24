@@ -12,7 +12,6 @@ const About = () => {
     <>
     <Navbar1/>
       <Header2 className="headerimg" title="" image={Head} />
-
       <section className='slogan'>
         <div className='slogancontainer'>
           <div className='slogancontent'>
@@ -33,7 +32,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
       <section className="about__vision">
         <div className="container about__vision-container">
           <div className="about__section-content">
