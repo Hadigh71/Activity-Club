@@ -137,6 +137,24 @@ const ManageEvents = () => {
     }
   };
 
+  const handleRemoveGuide = async (guideId, eventId) => {
+    try {
+      await axios.delete(`https://localhost:7063/api/ResponsibleFor/remove`, {
+        params: {
+          guideId: guideId,
+          eventId: eventId
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      alert('Guide removed successfully');
+      fetchAssignedGuides(eventId);
+    } catch (error) {
+      console.error('Error removing guide:', error);
+    }
+  };
+
   const fetchAssignedGuides = async (eventId) => {
     try {
       const response = await axios.get(`https://localhost:7063/api/ResponsibleFor/getByEvent/${eventId}`, {
@@ -309,7 +327,10 @@ const ManageEvents = () => {
           <h2>Assigned Guides for Event ID: {selectedEventId}</h2>
           <ul>
             {assignedGuides.map(guide => (
-              <li key={guide.id}>{guide.fullName}</li>
+              <li key={guide.id}>
+                {guide.fullName}
+                <button onClick={() => handleRemoveGuide(guide.id, selectedEventId)} className="remove-guide">Remove</button>
+              </li>
             ))}
           </ul>
         </div>

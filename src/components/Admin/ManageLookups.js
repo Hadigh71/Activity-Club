@@ -117,6 +117,11 @@ const ManageLookups = () => {
     setEditLookup(null);
   };
 
+  const getLookupType = (codeId) => {
+    const code = codes.find(code => code.id === codeId);
+    return code ? code.lookupType : 'Unknown';
+  };
+
   return (
     <div className='manage-admins-container'>
       <h1>Manage Lookups</h1>
@@ -141,22 +146,24 @@ const ManageLookups = () => {
           }}
           required
         >
-          <option value="">Select Code</option>
+          <option value="">Select Lookup Type</option>
           {codes.map(code => (
             <option key={code.id} value={code.id}>{code.lookupType}</option>
           ))}
           <option value="new-code">Add New Lookup Type</option>
         </select>
         {showNewCodeInput && (
-          <div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <input
               type='text'
               placeholder='New Lookup Type'
+              className='NewLookupType'
               value={newCode}
               onChange={e => setNewCode(e.target.value)}
               required
+              style={{ width: '60%', marginRight: '10px' }}
             />
-            <button onClick={handleAddCode}>Add Lookup Type</button>
+            <button className="AddLookupType" onClick={handleAddCode} style={{ width: 'calc(40% - 10px)' }}>Add Lookup Type</button>
           </div>
         )}
         <input
@@ -184,7 +191,7 @@ const ManageLookups = () => {
             <tr key={lookup.id}>
               <td>{lookup.id}</td>
               <td>{lookup.name}</td>
-              <td>{lookup.codeId}</td> {/* Display codeId for simplicity */}
+              <td>{getLookupType(lookup.codeId)}</td> {/* Display lookupType instead of codeId */}
               <td>{lookup.order}</td>
               <td>
                 <button onClick={() => setEditLookup(lookup)} className='assign-guide'>Edit</button>

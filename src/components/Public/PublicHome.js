@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar1 from '../Navbar/Navbar1';
-import BackgroundImage from '../../images/background2.jpeg';
+import BackgroundImage from '../../images/tennis.jpg';
 import './PublicHome.css';
 import Footer1 from '../Footer/Footer1';
 

@@ -8,6 +8,7 @@ const ManageMembers = () => {
     email: '',
     password: '',
     username: '',
+    name: '',
     dateOfBirth: '',
     gender: '',
     joiningDate: '',
@@ -53,6 +54,7 @@ const ManageMembers = () => {
         email: '',
         password: '',
         username: '',
+        name: '',
         dateOfBirth: '',
         gender: '',
         joiningDate: '',
@@ -124,6 +126,7 @@ const ManageMembers = () => {
       email: '',
       password: '',
       username: '',
+      name: '',
       dateOfBirth: '',
       gender: '',
       joiningDate: '',
@@ -160,6 +163,13 @@ const ManageMembers = () => {
           placeholder='Username'
           value={editMember ? editMember.username : newMember.username}
           onChange={e => editMember ? setEditMember({ ...editMember, username: e.target.value }) : setNewMember({ ...newMember, username: e.target.value })}
+          required
+        />
+        <input
+          type='text'
+          placeholder='Name'
+          value={editMember ? editMember.name : newMember.name}
+          onChange={e => editMember ? setEditMember({ ...editMember, name: e.target.value }) : setNewMember({ ...newMember, name: e.target.value })}
           required
         />
         <div className='form-group3' >
@@ -234,6 +244,7 @@ const ManageMembers = () => {
             <th>Email</th>
             <th>Password</th>
             <th>Username</th>
+            <th>Name</th>
             <th>Date of Birth</th>
             <th>Gender</th>
             <th>Joining Date</th>
@@ -253,6 +264,7 @@ const ManageMembers = () => {
               <td>{member.email}</td>
               <td>{member.password}</td>
               <td>{member.username}</td>
+              <td>{member.name}</td>
               <td>{member.dateOfBirth}</td>
               <td>{member.gender}</td>
               <td>{member.joiningDate}</td>

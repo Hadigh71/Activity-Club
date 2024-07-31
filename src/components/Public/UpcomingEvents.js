@@ -9,6 +9,7 @@ const UpcomingEvents = () => {
   const [memberId, setMemberId] = useState(null);
   const [assignedGuides, setAssignedGuides] = useState([]);
   const [viewGuides, setViewGuides] = useState(false);
+  const [joinedEvents, setJoinedEvents] = useState([]);
 
   useEffect(() => {
     const storedMember = localStorage.getItem('member');
@@ -33,8 +34,28 @@ const UpcomingEvents = () => {
       }
     };
 
+    const fetchJoinedEvents = async () => {
+      try {
+        const response = await fetch(`https://localhost:7063/api/JoinedEvent/member/${memberId}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        const data = await response.json();
+        setJoinedEvents(data.map(event => ({
+          eventId: event.id,
+          joinedEventId: event.joinedEventId // Assuming the backend returns the JoinedEvent ID
+        })));
+      } catch (error) {
+        console.error('Error fetching joined events:', error);
+      }
+    };
+
     fetchEvents();
-  }, []);
+    if (memberId) {
+      fetchJoinedEvents();
+    }
+  }, [memberId]);
 
   const fetchAssignedGuides = async (eventId) => {
     try {
@@ -72,6 +93,7 @@ const UpcomingEvents = () => {
 
       if (response.ok) {
         alert('Successfully joined the event!');
+        setJoinedEvents([...joinedEvents, { eventId, joinedEventId: await response.json().id }]); // Update joined events list
         setSelectedEvent(null); // Close the event details after joining
       } else {
         const errorData = await response.json();
@@ -80,6 +102,35 @@ const UpcomingEvents = () => {
     } catch (error) {
       console.error('Error joining event:', error);
       alert('Error joining event. Please try again.');
+    }
+  };
+
+  const handleLeaveEvent = async (eventId) => {
+    const joinedEvent = joinedEvents.find(e => e.eventId === eventId);
+    if (!joinedEvent) {
+      alert("You're not a member of this event.");
+      return;
+    }
+
+    try {
+      const response = await fetch(`https://localhost:7063/api/JoinedEvent/delete?memberId=${memberId}&eventId=${eventId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+
+      if (response.ok) {
+        alert('Successfully left the event!');
+        setJoinedEvents(joinedEvents.filter(e => e.eventId !== eventId)); // Update joined events list
+        setSelectedEvent(null); // Close the event details after leaving
+      } else {
+        const errorData = await response.json();
+        alert(errorData.message || 'Failed to leave the event.');
+      }
+    } catch (error) {
+      console.error('Error leaving event:', error);
+      alert('Error leaving event. Please try again.');
     }
   };
 
@@ -121,17 +172,21 @@ const UpcomingEvents = () => {
               {isPastDue(selectedEvent) ? (
                 <p className="upcoming-events-past-due">Past Due</p>
               ) : (
-                <button onClick={() => handleJoinEvent(selectedEvent.id)} className="upcoming-events-join-button">Join Event</button>
+                <>
+                  <button onClick={() => handleJoinEvent(selectedEvent.id)} className="upcoming-events-join-button">Join Event</button>
+                  <button onClick={() => handleLeaveEvent(selectedEvent.id)} className="upcoming-events-leave-button">Leave Event</button>
+                </>
               )}
-              <button onClick={() =>{ fetchAssignedGuides(selectedEvent.id); setViewGuides(true)}} className="upcoming-events-see-guides-button">See Guides</button>
+              <button onClick={() => { fetchAssignedGuides(selectedEvent.id); setViewGuides(true); }} className="upcoming-events-see-guides-button">See Guides</button>
               <button onClick={handleCloseDetails} className="upcoming-events-close-button">Close</button>
               {viewGuides && (
                 <div className="upcoming-events-guide-details">
                   <h3>Assigned Guides:</h3>
-                  {assignedGuides.length>0?(
-                   assignedGuides.map(guide => (
-                    <p key={guide.id}><strong>Name:</strong> {guide.fullName}</p>
-                  ))):(
+                  {assignedGuides.length > 0 ? (
+                    assignedGuides.map(guide => (
+                      <p key={guide.id}><strong>Name:</strong> {guide.fullName}</p>
+                    ))
+                  ) : (
                     <p>No guides for this event.</p>
                   )}
                   <button onClick={() => setViewGuides(false)} className="upcoming-events-hide-button">Close Guides</button>

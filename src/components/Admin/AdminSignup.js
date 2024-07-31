@@ -31,6 +31,8 @@ function AdminSignUp() {
 
       if (response.data.success) {
         alert("User created successfully");
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data)); // Save user info
         navigate("/admin-home", { state: { id: username, name: name } });
       } else {
         alert("Failed to sign up: " + response.data.message);
@@ -39,10 +41,9 @@ function AdminSignUp() {
       if (error.response) {
         if (error.response.status === 400) {
           alert(`Error: ${error.response.data.message}`);
-        }
-        else if (error.response.status === 409) {
+        } else if (error.response.status === 409) {
           alert(error.response.data.message);
-         } else {
+        } else {
           alert("An error occurred. Please try again.");
         }
       } else if (error.request) {
@@ -102,7 +103,6 @@ function AdminSignUp() {
             <option value="" disabled>Select Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
-            <option value="Other">Other</option>
           </select>
           <input
             className='input-field'
@@ -121,7 +121,6 @@ function AdminSignUp() {
             <option value="" disabled>Select Role</option>
             <option value={1}>Admin</option>
             <option value={2}>Member</option>
-            <option value={4}>Guide</option>
           </select>
           <button className='login-button' type='submit'>Sign Up</button>
         </form>

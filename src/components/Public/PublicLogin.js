@@ -68,7 +68,7 @@ function PublicLogin() {
           <button className='login-button' type='submit'>Log In</button>
         </form>
         <p>Don't have an account?</p>
-        <a className='link2' href='/admin-signup'>Sign Up Instead</a>
+        <a className='link2' href='/public-signup'>Sign Up Instead</a>
       </div>
     </div>
   );

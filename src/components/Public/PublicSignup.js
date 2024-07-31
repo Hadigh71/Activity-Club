@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import BackgroundImage from "../../images/background2.jpeg"; // Adjust the path to your image
-import './../Admin/AdminLogin.css';
+import './PublicSign.css';
 
 function PublicSignUp() {
   const navigate = useNavigate();
@@ -13,25 +13,37 @@ function PublicSignUp() {
   const [password, setPassword] = useState('');
   const [gender, setGender] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
-  const [roleId, setRoleId] = useState('');
+  const [joiningDate, setJoiningDate] = useState('');
+  const [mobileNum, setMobileNum] = useState('');
+  const [emergencyNum, setEmergencyNum] = useState('');
+  const [photo, setPhoto] = useState('');
+  const [profession, setProfession] = useState('');
+  const [nationality, setNationality] = useState('');
 
   async function submit(e) {
     e.preventDefault();
 
     try {
-      const response = await axios.post("https://localhost:7063/api/Auth/signup", {
-        userName: username,
+      const response = await axios.post("https://localhost:7063/api/Member/signup", {
+        username: username,
         email: email,
         name: name,
         password: password,
         gender: gender,
         dateOfBirth: dateOfBirth,
-        roleId: roleId
+        joiningDate: joiningDate,
+        mobileNum: mobileNum,
+        emergencyNum: emergencyNum,
+        photo: photo,
+        profession: profession,
+        nationality: nationality
       });
 
       if (response.data.success) {
-        alert("User created successfully");
-        navigate("/public-home", { state: { id: username } });
+        alert("Member created successfully");
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('member', JSON.stringify(response.data)); // Save member info
+        navigate("/public-home", { state: { id: username, name: name } });
       } else {
         alert("Failed to sign up: " + response.data.message);
       }
@@ -53,7 +65,7 @@ function PublicSignUp() {
   }
 
   return (
-    <div className='body-container'>
+    <div className='body-container1'>
       <img src={BackgroundImage} alt="background" className='background-image'/>
       <div className='cover'>
         <h1 className='header'>Public Sign Up</h1>
@@ -76,14 +88,6 @@ function PublicSignUp() {
           />
           <input
             className='input-field'
-            value={name}
-            type="text"
-            placeholder='Name'
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-          <input
-            className='input-field'
             value={password}
             type="password"
             placeholder='Password'
@@ -92,26 +96,80 @@ function PublicSignUp() {
           />
           <input
             className='input-field'
-            value={gender}
+            value={name}
             type="text"
-            placeholder='Gender'
+            placeholder='Name'
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <select
+            className='select-field'
+            value={gender}
             onChange={(e) => setGender(e.target.value)}
             required
-          />
+          >
+            <option value="" disabled>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+          <div className='form-group-date'>
+            <label className='date-label'>Date of Birth:</label>
+            <input
+              className='input-field'
+              value={dateOfBirth}
+              type="date"
+              onChange={(e) => setDateOfBirth(e.target.value)}
+              required
+            />
+          </div>
+          <div className='form-group-date'>
+            <label className='date-label'>Joining Date:</label>
+            <input
+              className='input-field'
+              value={joiningDate}
+              type="date"
+              onChange={(e) => setJoiningDate(e.target.value)}
+              required
+            />
+          </div>
           <input
             className='input-field'
-            value={dateOfBirth}
-            type="date"
-            placeholder='Date of Birth'
-            onChange={(e) => setDateOfBirth(e.target.value)}
+            value={mobileNum}
+            type="text"
+            placeholder='Mobile Number'
+            onChange={(e) => setMobileNum(e.target.value)}
             required
           />
           <input
             className='input-field'
-            value={roleId}
-            type="number"
-            placeholder='Role ID'
-            onChange={(e) => setRoleId(e.target.value)}
+            value={emergencyNum}
+            type="text"
+            placeholder='Emergency Number'
+            onChange={(e) => setEmergencyNum(e.target.value)}
+            required
+          />
+          <input
+            className='input-field'
+            value={photo}
+            type="text"
+            placeholder='Photo'
+            onChange={(e) => setPhoto(e.target.value)}
+            required
+          />
+          <input
+            className='input-field'
+            value={profession}
+            type="text"
+            placeholder='Profession'
+            onChange={(e) => setProfession(e.target.value)}
+            required
+          />
+          <input
+            className='input-field'
+            value={nationality}
+            type="text"
+            placeholder='Nationality'
+            onChange={(e) => setNationality(e.target.value)}
             required
           />
           <button className='login-button' type='submit'>Sign Up</button>

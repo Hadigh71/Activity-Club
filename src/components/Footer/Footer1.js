@@ -8,16 +8,16 @@ export const Footer = () => {
         <div className='footer-link-wrapper'>
           <div className='footer-link-items'>
             <h2>About Us</h2>
-            <a href='/signup'>Get Started</a>
-            <a href='/about'>Our Story</a>
-            <a href='/about'>Our Vision</a>
-            <a href='/about'>Our Mission</a>
+            <a href='/public-home'>Get Started</a>
+            <a href='/about1'>Our Story</a>
+            <a href='/about1'>Our Vision</a>
+            <a href='/about1'>Our Mission</a>
             <a href='/'>Terms of Service</a>
           </div>
           <div className='footer-link-items'>
             <h2>Contact Us</h2>
-            <a href='/contact'>Contact Us</a>
-            <a href='/contact'>Support</a>
+            <a href='/contact1'>Contact Us</a>
+            <a href='/contact1'>Support</a>
           </div>
         </div>
         <div className='footer-link-wrapper'>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './AdminHome.css'; // Ensure you have this CSS file for styling
 import Navbar from '../Navbar/Navbar';
-import BackgroundImage from '../../images/background2.jpeg'; // Import the background image
+import BackgroundImage from '../../images/tennis.jpg'; // Import the background image
 import Footer from '../Footer/Footer';
 
 const AdminHome = () => {

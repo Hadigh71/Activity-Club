@@ -6,6 +6,7 @@ const ManageAdmins = () => {
   const [users, setUsers] = useState([]);
   const [newUser, setNewUser] = useState({ userName: '', name: '', email: '', password: '', dateOfBirth: '', gender: '', roleId: 1 });
   const [editUser, setEditUser] = useState(null);
+  const [roles, setRoles] = useState([]);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -20,8 +21,21 @@ const ManageAdmins = () => {
         console.error('Error fetching users:', error);
       }
     };
+    const fetchRoles = async () => {
+      try {
+        const response = await axios.get('https://localhost:7063/api/Role/getall', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        setRoles(response.data);
+      } catch (error) {
+        console.error('Error fetching roles:', error);
+      }
+    };
 
     fetchUsers();
+    fetchRoles();
   }, []);
 
   const handleAddUser = async (e) => {
@@ -78,6 +92,11 @@ const ManageAdmins = () => {
   const resetForm = () => {
     setNewUser({ userName: '', name: '', email: '', password: '', dateOfBirth: '', gender: '', roleId: 1 });
     setEditUser(null);
+  };
+
+  const getRole = (roleId) => {
+    const role = roles.find(role => role.id === roleId);
+    return role ? role.roleName : 'Unknown';
   };
 
   const admins = users.filter(user => user.roleId === 1);
@@ -156,7 +175,7 @@ const ManageAdmins = () => {
             <th>Date Of Birth</th>
             <th>Gender</th>
             <th>Email</th>
-            <th>Role ID</th>
+            <th>Role</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -170,7 +189,7 @@ const ManageAdmins = () => {
               <td>{admin.dateOfBirth}</td>
               <td>{admin.gender}</td>
               <td>{admin.email}</td>
-              <td>{admin.roleId}</td>
+              <td>{getRole(admin.roleId)}</td>
               <td>
                 <button onClick={() => setEditUser(admin)}className='assign-guide'>Edit</button>
                 <button onClick={() => handleDeleteUser(admin.id)} className='delete-event'>Delete</button>

@@ -8,7 +8,7 @@ export const Footer = () => {
         <div className='footer-link-wrapper'>
           <div className='footer-link-items'>
             <h2>About Us</h2>
-            <a href='/signup'>Get Started</a>
+            <a href='/admin-home'>Get Started</a>
             <a href='/about'>Our Story</a>
             <a href='/about'>Our Vision</a>
             <a href='/about'>Our Mission</a>

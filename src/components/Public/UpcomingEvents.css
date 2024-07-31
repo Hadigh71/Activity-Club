@@ -123,8 +123,9 @@
 
 .upcoming-events-close-button,
 .upcoming-events-join-button, 
-.upcoming-events-see-guides-button {
-  background:  #dc3545;
+.upcoming-events-see-guides-button,
+.upcoming-events-leave-button {
+  background: #dc3545;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -132,8 +133,8 @@
   cursor: pointer;
   margin-top: 20px;
   transition: background 0.3s ease;
-  margin-right: 35px;
-  margin-left: 10px;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .upcoming-events-close-button:hover {
@@ -141,7 +142,7 @@
 }
 
 .upcoming-events-hide-button{
-  background:  #dc3545;
+  background: #dc3545;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -153,7 +154,6 @@
 
 .upcoming-events-hide-button:hover{
   background: #a90a1a;
-
 }
 
 .upcoming-events-join-button {
@@ -173,6 +173,15 @@
 
 .upcoming-events-see-guides-button:hover{
   background: #0056b3;
+}
+
+.upcoming-events-leave-button {
+  background: #ffc107;
+  margin-left: 20px;
+}
+
+.upcoming-events-leave-button:hover {
+  background: #e0a800;
 }
 
 .upcoming-events-past-due {
