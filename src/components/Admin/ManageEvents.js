@@ -321,6 +321,7 @@ const ManageEvents = () => {
           ))}
         </tbody>
       </table>
+      
       {showAssignedGuides && selectedEventId && (
         <div className='assigned-guides-container'>
           <button className='close-button' onClick={() => setShowAssignedGuides(false)}>Hide Assigned Guides</button>
