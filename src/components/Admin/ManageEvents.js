@@ -155,6 +155,24 @@ const ManageEvents = () => {
     }
   };
 
+  const handleRemoveMember = async (memberId, eventId) => {
+    try {
+      await axios.delete(`https://localhost:7063/api/JoinedEvent/remove`, {
+        params: {
+          memberId: memberId,
+          eventId: eventId
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      alert('Member removed successfully');
+      fetchJoinedMembers(eventId);
+    } catch (error) {
+      console.error('Error removing member:', error);
+    }
+  };
+
   const fetchAssignedGuides = async (eventId) => {
     try {
       const response = await axios.get(`https://localhost:7063/api/ResponsibleFor/getByEvent/${eventId}`, {
@@ -342,7 +360,10 @@ const ManageEvents = () => {
           <h2>Joined Members for Event ID: {selectedEventId1}</h2>
           <ul>
             {members.map(member => (
-              <li key={member.id}>{member.name}</li>
+              <li key={member.id}>
+                {member.name}
+                <button onClick={() => handleRemoveMember(member.id, selectedEventId1)} className="remove-guide">Remove</button>
+              </li>
             ))}
           </ul>
         </div>
